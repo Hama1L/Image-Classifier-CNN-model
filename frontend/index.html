@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scanner — Image Classifier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="panel-frame">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">SCANNER</span>
+      </div>
+      <span class="brand-sub">local model &middot; mobilenet-v2 &middot; 1000 classes</span>
+    </header>
+
+    <main class="stage">
+      <section class="viewfinder" id="dropzone">
+        <div class="bracket bracket-tl"></div>
+        <div class="bracket bracket-tr"></div>
+        <div class="bracket bracket-bl"></div>
+        <div class="bracket bracket-br"></div>
+
+        <div class="sweep" id="sweep"></div>
+
+        <img id="preview" class="preview" alt="" hidden />
+
+        <div class="hint" id="hint">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 4v12m0-12l-4 4m4-4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>Drop an image, or click to select one</p>
+          <p class="hint-sub">JPEG, PNG, or WEBP</p>
+        </div>
+
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden />
+      </section>
+
+      <section class="readout" id="readout">
+        <div class="readout-header">
+          <span class="readout-title">Readout</span>
+          <span class="readout-status" id="status">Idle</span>
+        </div>
+
+        <div class="readout-body" id="results">
+          <p class="empty-state">No sample scanned yet.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      Runs a real pretrained CNN on this image, entirely inside the container serving this page.
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
