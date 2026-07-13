@@ -5,6 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from app.model import predict
 from app.schemas import Prediction, PredictionResponse
 
+from pathlib import Path
+
 app = FastAPI(title="Image Classifier API", version="1.0.0")
 
 # CORS is wide open here for local learning/dev convenience.
