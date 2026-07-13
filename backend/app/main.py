@@ -49,4 +49,12 @@ async def classify_image(file: UploadFile = File(...)) -> PredictionResponse:
 
 # Serve the frontend as static files. This mount MUST be last: FastAPI matches
 # routes top-to-bottom, and StaticFiles would otherwise swallow /health and /predict.
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+
+# 2. Mount the static files using the resolved absolute path
+if FRONTEND_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+else:
+    # This fallback prevents pytest/local runs from crashing if the frontend folder is missing
+    print(f"Warning: Frontend directory not found at {FRONTEND_DIR}")
