@@ -1,6 +1,6 @@
 # Scanner — Image Classifier
 
-A small web app that classifies images using a real pretrained CNN
+A web app that classifies images using a real pretrained CNN
 (MobileNetV2, trained on ImageNet), served through a FastAPI backend,
 containerized with Docker, and shipped through a GitHub Actions CI/CD
 pipeline.
